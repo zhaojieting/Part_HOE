@@ -142,12 +142,6 @@ def main():
         except Exception as e:
             print(f'Failed to load parameter{name}: {e}')
     # copy model file
-    this_dir = os.path.dirname(__file__)
-    # shutil.copy2(
-    #     os.path.join(this_dir, '../lib/models', cfg.MODEL.NAME + '.py'),
-    #     final_output_dir)
-    # logger.info(pprint.pformat(model))
-
     writer_dict = {
         'writer': SummaryWriter(logdir=tb_log_dir),
         'train_global_steps': 0,
@@ -161,17 +155,6 @@ def main():
 
     logger.info(get_model_summary(model, dump_input))
 
-    # load pretrained model
-
-    # pre_model = '/home/cchw/coding/important_model/amazon_model/gray_HM3.6_MPII_with_HOE.pth'
-    # logger.info("=> loading checkpoint '{}'".format(pre_model))
-    # checkpoint = torch.load(pre_model)
-    # if 'state_dict' in checkpoint:
-    #     model.load_state_dict(checkpoint['state_dict'], strict=True)
-    # else:
-    #     model.load_state_dict(checkpoint, strict=True)
-
-    # import pdb;pdb.set_trace()
     model = torch.nn.DataParallel(model, device_ids=cfg.GPUS).cuda()
 
 
@@ -179,32 +162,11 @@ def main():
     criterions['2d_pose_loss'] = JointsMSELoss(
         use_target_weight=cfg.LOSS.USE_TARGET_WEIGHT
     ).cuda()
-    # criterions['hoe_loss'] = torch.nn.NLLLoss().cuda()
-    criterions['vertical_loss'] = torch.nn.MSELoss().cuda()
-    # criterions['vertical_loss'] = torch.nn.CrossEntropyLoss().cuda()
-    # criterions['hoe_loss'] = SoftTargetCrossEntropy().cuda()
     criterions['hoe_loss'] = HoeMSELoss().cuda()
-    criterions['vh_constraint'] = VhConstraintLoss().cuda()
-    # criterions['mask_loss'] = MasksCrossEntropy().cuda()
-    criterions['mask_loss'] = DiceLoss(weight=torch.tensor([0.4, 0.6, 0.4, 0.4, 0.6, 0.6, 0.4, 0.6, 0.6])).cuda()
-    criterions['cross_mask_loss'] = MasksCrossEntropy(weight=torch.tensor([0.01, 0.4, 0.2, 0.4, 0.8, 0.8, 0.4, 0.8, 0.8])).cuda()
-    # criterions['mask_loss'] = MasksCrossEntropy(weight=torch.tensor([0.1, 0.5, 0.2, 0.2, 0.2])).cuda()
-    # criterions['mask_loss'] = MasksCrossEntropy(weight=torch.tensor([0.1, 0.8, 0.2, 0.5, 0.3, 1.0,0.5, 0.3, 1.0])).cuda()
-    # criterions['fea_loss'] = HwMasksCrossEntropy().cuda()
-    # criterions['mask_loss'] = BodyPartAttentionLoss(weight=torch.tensor([0.1, 0.8, 0.2, 0.5, 0.5, 0.3, 0.3, 1.0, 1.0])).cuda()
-    criterions['spatial_consistency_loss'] = SpatialConsistencyLoss().cuda()
-    criterions['weight_loss'] = Weight_loss().cuda()
-    criterions['iou_loss'] = MaskIOU_loss().cuda()
-    criterions['contrast_loss'] = SupConLoss().cuda()
-
     # Data loading code
     normalize = transforms.Normalize(
         mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
     )
-
-    # normalize = transforms.Normalize(
-    #     mean=[0.3281186, 0.28937867, 0.20702125], std=[0.09407319, 0.09732835, 0.106712654]
-    # )
 
     train_dataset = eval('dataset.'+cfg.DATASET.DATASET)(
         cfg, cfg.DATASET.TRAIN_ROOT, True,
@@ -213,7 +175,6 @@ def main():
             normalize,
         ])
     )
-
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
@@ -271,10 +232,10 @@ def main():
     lmbda = 0.00001
     # best_perf = 20
     for epoch in range(begin_epoch, cfg.TRAIN.END_EPOCH):
-        lmbda = bin_train(cfg, train_loader, train_dataset, model, criterions, optimizer, epoch,
+        lmbda = train(cfg, train_loader, train_dataset, model, criterions, optimizer, epoch,
               final_output_dir, tb_log_dir, writer_dict, lmbda)
 
-        perf_indicator = bin_validate(
+        perf_indicator = validate(
             cfg, valid_loader, valid_dataset, model, criterions,
             final_output_dir, tb_log_dir, writer_dict, draw_pic=False, save_pickle=False
         )
