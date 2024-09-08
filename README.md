@@ -26,6 +26,7 @@ This is the official implementation of our article: "Human Orientation Estimatio
 
 ### Prepare the Dataset, whole-body joint annotations, and orientation annotations 
 Download 4 [annotations](https://drive.google.com/drive/folders/1J3xDMaJMF25nTjO7li9d-UKh8_16zPHf?usp=drive_link) and put them into the COCO annotation folder.
+```
 |-- data
 `-- |-- coco
     `-- |-- annotations
@@ -43,7 +44,8 @@ Download 4 [annotations](https://drive.google.com/drive/folders/1J3xDMaJMF25nTjO
                 |-- 000000000139.jpg
                 |-- 000000000285.jpg
                 |-- 000000000632.jpg
-                |-- ... 
+                |-- ...
+```
 ## Test
 Download the [PartHOE_S](https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwGMVh6hdX6/view?usp=drive_link
 ) weight and put it in the checkpoints folder.
