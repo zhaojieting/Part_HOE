@@ -1,5 +1,5 @@
 # Part_HOE
-Since I graduated from SUSTech in 2024.07, the code and dataset might have some bugs ~  If you need any help, **feel free to ask me through GitHub issues**!
+Since I graduated from school in 2024.07, the environment has not remained the original version, and the code and dataset might have some bugs ~  If you need any help, **feel free to ask me through GitHub issues**!
 
 This is the official implementation of our article: "Human Orientation Estimation Under Partial Observation".
 <img src="https://github.com/zhaojieting/Part_HOE/blob/main/docs/IROS2024-Video-2x.gif" width="760" height="480" />
