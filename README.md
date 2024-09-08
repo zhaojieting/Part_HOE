@@ -5,7 +5,7 @@ If you need any help, **feel free to ask me through GitHub issues**!
 <img src="https://github.com/zhaojieting/Part_HOE/blob/main/docs/IROS2024-Video-2x.gif" width="760" height="480" />
 
 ## News
-⭐ Paper is release on arxiv [Part_HOE](https://arxiv.org/abs/2404.14139).
+⭐ Paper is release on arxiv [PartHOE](https://arxiv.org/abs/2404.14139).
 
 🎉 The paper is accepted by IROS 2024!
 ## Environment Setup
