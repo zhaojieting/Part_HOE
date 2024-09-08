@@ -42,10 +42,10 @@ class COCO_HOE_Dataset(data.Dataset):
         self.eft_counter = 0
         self.is_train = is_train
         if is_train:
-            json_path = os.path.join(root, 'annotations', 'train_merged_eft_mebow.json')
+            json_path = os.path.join(root, 'annotations', 'merged_orientation_train.json')
             dataType = 'train_v1.0'
         else:
-            json_path = os.path.join(root, 'annotations', 'val_merged_eft_mebow.json')
+            json_path = os.path.join(root, 'annotations', 'merged_orientation_val.json')
             dataType = 'val_v1.0'
 
         json_file = open(json_path, 'r')
