@@ -338,7 +338,7 @@ def print_msg(step, loader_len, batch_time, has_hkd, loss_hkd, loss_vertical, lo
         '{acc_label} {acc.val:.1%} ({acc.avg:.1%})'.format(Degree_error = degree_error, acc_label=acc_label, acc=acc)
   logger.info(msg)
 
-def bin_train(config, train_loader, train_dataset, model, criterions, optimizer, epoch,
+def train(config, train_loader, train_dataset, model, criterions, optimizer, epoch,
           output_dir, tb_log_dir, writer_dict, lmbda):
     batch_time = AverageMeter()
     data_time = AverageMeter()
@@ -450,7 +450,7 @@ def bin_train(config, train_loader, train_dataset, model, criterions, optimizer,
     return lmbda
 
 
-def bin_validate(config, val_loader, val_dataset, model, criterions,  output_dir,
+def validate(config, val_loader, val_dataset, model, criterions,  output_dir,
              tb_log_dir, writer_dict=None, draw_pic=False, save_pickle=False):
     batch_time = AverageMeter()
     loss_hkd_log = AverageMeter()
