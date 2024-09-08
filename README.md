@@ -6,6 +6,7 @@ If you need any help, **feel free to ask me through GitHub issues**!
 
 ## News
 ⭐ Paper is release on arxiv.
+
 🎉 The paper is accepted by IROS 2024!
 ## Environment Setup
    ```
