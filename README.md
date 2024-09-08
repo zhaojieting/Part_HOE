@@ -1,9 +1,12 @@
-# [Part_HOE(IROS 2024)](https://arxiv.org/abs/2404.14139)
+# [Part_HOE](https://arxiv.org/abs/2404.14139)
 Since I graduated from school in 2024.07, the environment has not remained the original version, and the code might have some bugs ~  
 
 If you need any help, **feel free to ask me through GitHub issues**!
 <img src="https://github.com/zhaojieting/Part_HOE/blob/main/docs/IROS2024-Video-2x.gif" width="760" height="480" />
 
+## News
+⭐ Paper is release on arxiv.
+🎉 The paper is accepted by IROS 2024!
 ## Environment Setup
    ```
    conda create -n part_hoe python=3.7
