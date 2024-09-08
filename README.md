@@ -32,7 +32,7 @@ python parthoe_test.py --cfg config/parthoe.yaml
 If you want to retrain the model, you must download the pre-trained backbone checkpoint here(https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwGMVh6hdX6/view?usp=drive_link).
 python parthoe_train.py --cfg config/parthoe.yaml
 
-## Acknowledge
+## Acknowledgement
 Since I graduated from SUSTech in 2024.07, the code and dataset might have some bugs ~ 
 If you need any help, feel free to ask me by GitHub issues!
-This work is inspired from MEBOW(), ViTPose()
+The code of this work is based on the opensource MEBOW(https://github.com/ChenyanWu/MEBOW) and ViTPose(https://github.com/ViTAE-Transformer/ViTPose/tree/main).
