@@ -12,6 +12,7 @@ This is the official implementation of our article: "Human Orientation Estimatio
    pip install timm==0.4.9 einops
    ```
 ## Dataset Preparation
+### Install COCOAPI
    ```
    # COCOAPI=/path/to/clone/cocoapi
    git clone https://github.com/cocodataset/cocoapi.git $COCOAPI
@@ -22,6 +23,27 @@ This is the official implementation of our article: "Human Orientation Estimatio
    # not to install the COCO API into global site-packages
    python3 setup.py install --user
    ```
+
+### Prepare the Dataset, whole-body joint annotations, and orientation annotations 
+Download 4 [annotations](https://drive.google.com/drive/folders/1J3xDMaJMF25nTjO7li9d-UKh8_16zPHf?usp=drive_link) and put them into the COCO annotation folder.
+|-- data
+`-- |-- coco
+    `-- |-- annotations
+        |   |-- coco_wholebody_train_v1.0.json
+        |   |-- coco_wholebody_val_v1.0.json
+        |   |-- merged_orientation_train.json
+        |   |-- merged_orientation_val.json
+        `-- images
+            |-- train2017
+            |   |-- 000000000009.jpg
+            |   |-- 000000000025.jpg
+            |   |-- 000000000030.jpg
+            |   |-- ... 
+            `-- val2017
+                |-- 000000000139.jpg
+                |-- 000000000285.jpg
+                |-- 000000000632.jpg
+                |-- ... 
 ## Test
 Download the [PartHOE_S](https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwGMVh6hdX6/view?usp=drive_link
 ) weight and put it in the checkpoints folder.
