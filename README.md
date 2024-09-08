@@ -53,7 +53,7 @@ Download the [PartHOE](https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwG
 python parthoe_test.py --cfg config/parthoe.yaml
 ```
 ## Train
-If you want to retrain the model, you must download the pre-trained [VIT-S](https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwGMVh6hdX6/view?usp=drive_link) weight.
+If you want to retrain the model, you must download the pre-trained [VIT-S](https://drive.google.com/file/d/13hrWsB4hsaYJsLjvNl-dwc2ZwuJvVleh/view?usp=drive_link) weight.
 ```
 python parthoe_train.py --cfg config/parthoe.yaml
 ```
