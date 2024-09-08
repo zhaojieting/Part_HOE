@@ -20,16 +20,15 @@ pip install timm==0.4.9 einops
    # not to install the COCO API into global site-packages
    python3 setup.py install --user
    ```
-
-## Pretrained checkpoints
+## Test
 Download the [PartHOE_S](https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwGMVh6hdX6/view?usp=drive_link
 ) weight and put it in the checkpoints folder.
 
-## Test
 python parthoe_test.py --cfg config/parthoe.yaml
 
 ## Train
 If you want to retrain the model, you must download the pre-trained [vit-s](https://drive.google.com/file/d/1M4Jr2IQ8p8PQjXPWVcAuSHwGMVh6hdX6/view?usp=drive_link) weight.
+
 python parthoe_train.py --cfg config/parthoe.yaml
 
 ## Acknowledgement
