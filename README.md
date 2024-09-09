@@ -62,4 +62,4 @@ If you want to retrain the model, you must download the pre-trained [VIT-S](http
 python parthoe_train.py --cfg config/parthoe.yaml
 ```
 ## Acknowledgement
-The code of this work is based on the open-source project [MEBOW](https://github.com/ChenyanWu/MEBOW) and [ViTPose](https://github.com/ViTAE-Transformer/ViTPose/tree/main).
+This work is built upon the open-source project [MEBOW](https://github.com/ChenyanWu/MEBOW) and [ViTPose](https://github.com/ViTAE-Transformer/ViTPose/tree/main). We extend our gratitude to the creators for their outstanding contributions!
