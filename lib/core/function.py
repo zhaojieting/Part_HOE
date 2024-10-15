@@ -18,8 +18,8 @@ from torch.autograd import Variable
 import torch.nn.functional as F
 
 
-from core.evaluate import accuracy, accuracy2
-from core.evaluate import comp_deg_error, continous_comp_deg_error, ori_numpy, vh_comp_deg_error, bin_comp_deg_error
+from lib.core.evaluate import accuracy, accuracy2
+from lib.core.evaluate import comp_deg_error, continous_comp_deg_error, ori_numpy, vh_comp_deg_error, bin_comp_deg_error
 from lib.utils.utils import vh2hoe, get_cos_similar_multi, bin2hoe
 
 logger = logging.getLogger(__name__)

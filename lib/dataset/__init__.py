@@ -4,4 +4,4 @@ from __future__ import division
 from __future__ import print_function
 
 
-from .coco_hoe import COCO_HOE_Lowerbody_Dataset
+from .coco_hoe_dataset import COCO_HOE_Dataset

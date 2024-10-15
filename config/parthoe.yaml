@@ -12,13 +12,13 @@ PRINT_FREQ: 30
 
 DATASET:
   COLOR_RGB: true
-  DATASET: 'COCO_HOE_Dataset'
+  # DATASET: 'COCO_HOE_Dataset'
   DATA_FORMAT: jpg
   FLIP: true
   NUM_JOINTS_HALF_BODY: 8
   PROB_HALF_BODY: 0.5
-  TRAIN_ROOT: '/path/to/coco/'
-  VAL_ROOT: '/path/to/coco/'
+  TRAIN_ROOT: './coco/'
+  VAL_ROOT: './coco/'
   ROT_FACTOR: 45
   SCALE_FACTOR: 0.35
   HOE_SIGMA: 4.0
@@ -62,7 +62,7 @@ TEST:
   BBOX_THRE: 1.0
   IMAGE_THRE: 0.0
   IN_VIS_THRE: 0.2
-  MODEL_FILE: 'checkpoints/parthoe_s.pth'
+  MODEL_FILE: 'checkpoints/wholebody-s.pth'
   NMS_THRE: 1.0
   OKS_THRE: 0.9
   USE_GT_BBOX: true

@@ -14,11 +14,6 @@ import numpy as np
 from scipy.io import loadmat, savemat
 from collections import OrderedDict
 import torch.utils.data as data
-from utils.copy_paste import CopyPaste
-from utils.coco import CocoDetectionCP
-from utils.visualize import display_instances
-import albumentations as A
-
 
 from pycocotools.coco import COCO
 from lib.utils.transforms import get_affine_transform
@@ -134,7 +129,6 @@ class COCO_HOE_Dataset(data.Dataset):
             right_bottom = np.amax(selected_joints, axis=0)
             center = np.array(lower_joints_wo_foot).mean(axis=0)[:2]
             # center = [(left_top[0] + right_bottom[0]) / 2.0, (left_top[1] + right_bottom[1]) / 2.0]
-            # print(center)
             w = right_bottom[0] - left_top[0]
             h = right_bottom[1] - left_top[1]
 

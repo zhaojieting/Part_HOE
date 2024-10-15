@@ -68,8 +68,6 @@ class PartHOEDecoder(nn.Module):
         self.fc_norm = nn.LayerNorm(384)
         self.hoe_head = nn.Linear(384, 72)
 
-
-
     def forward(self, x, Hp, Wp):
         hoe_feature = self.fc_norm(x.mean(1))
         hoe = self.hoe_head(hoe_feature)
@@ -359,7 +357,7 @@ class ViT(BaseBackbone):
             for i in range(depth)])
 
         self.last_norm = norm_layer(embed_dim) if last_norm else nn.Identity()
-        self.decoder = CustormDecoder()
+        self.decoder = PartHOEDecoder()
         if self.pos_embed is not None:
             trunc_normal_(self.pos_embed, std=.02)
 

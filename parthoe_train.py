@@ -23,23 +23,22 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 from tensorboardX import SummaryWriter
 
-import _init_paths
-from config import cfg
-from config import update_config
+from lib.config import cfg
+from lib.config import update_config
 
-from core.loss import JointsMSELoss
-from core.loss import HoeMSELoss
+from lib.core.loss import JointsMSELoss
+from lib.core.loss import HoeMSELoss
 
-from core.function import train
-from core.function import validate
+from lib.core.function import train
+from lib.core.function import validate
 
-from utils.utils import get_optimizer
-from utils.utils import save_checkpoint
-from utils.utils import create_logger
-from utils.utils import get_model_summary
+from lib.utils.utils import get_optimizer
+from lib.utils.utils import save_checkpoint
+from lib.utils.utils import create_logger
+from lib.utils.utils import get_model_summary
 
-import dataset
-from models import ViT
+from lib.dataset import COCO_HOE_Dataset
+from lib.models import ViT
 
 
 def parse_args():
@@ -105,14 +104,9 @@ def main():
         qkv_bias=True, 
         drop_path_rate=0.1,
         )
-
-    # joints pretrain
-    # checkpoint = torch.load("/home/zhaojieting/jieting_ws/MEBOW/models/vit+s-coco.pth", map_location='cpu')
     
     # mae pretrain
-    checkpoint = torch.load("/home/zhaojieting/jieting_ws/MEBOW/models/small_pretrained.pth", map_location='cpu')
-
-    # import pdb;pdb.set_trace()
+    checkpoint = torch.load("/path/to/vit+s-coco", map_location='cpu')
     for name, param in model.named_parameters():
         try:
             if name == 'decoder.conv_for_heatmap1.weight':
@@ -135,8 +129,6 @@ def main():
                 param.data = checkpoint['model'][name].data[:,:193,:]
             else:
                 # param.data = checkpoint['state_dict']['backbone.'+name].data
-
-                # 记得这里需要更改名字,当改变预训练文件的时候
                 param.data = checkpoint['model'][name].data
 
         except Exception as e:
@@ -151,8 +143,6 @@ def main():
     dump_input = torch.rand(
         (1, 3, cfg.MODEL.IMAGE_SIZE[1], cfg.MODEL.IMAGE_SIZE[0])
     )
-    # writer_dict['writer'].add_graph(model, (dump_input, ), operator_export_type = "RAW")
-
     logger.info(get_model_summary(model, dump_input))
 
     model = torch.nn.DataParallel(model, device_ids=cfg.GPUS).cuda()
@@ -184,15 +174,13 @@ def main():
         pin_memory=cfg.PIN_MEMORY
     )
 
-    # import pdb;pdb.set_trace()
-    valid_dataset = eval('dataset.' + cfg.DATASET.DATASET)(
+    valid_dataset = COCO_HOE_Dataset(
         cfg, cfg.DATASET.VAL_ROOT, False,
         transforms.Compose([
             transforms.ToTensor(),
             normalize,
         ])
     )
-
 
     valid_loader = torch.utils.data.DataLoader(
         valid_dataset,
@@ -215,7 +203,6 @@ def main():
     if cfg.AUTO_RESUME and os.path.exists(checkpoint_file):
         logger.info("=> loading checkpoint '{}'".format(checkpoint_file))
         checkpoint = torch.load(checkpoint_file)
-        # import pdb;pdb.set_trace()
         begin_epoch = checkpoint['epoch']
         best_perf = checkpoint['perf']
         last_epoch = checkpoint['epoch']
@@ -230,7 +217,6 @@ def main():
         last_epoch=last_epoch
     )
     lmbda = 0.00001
-    # best_perf = 20
     for epoch in range(begin_epoch, cfg.TRAIN.END_EPOCH):
         lmbda = train(cfg, train_loader, train_dataset, model, criterions, optimizer, epoch,
               final_output_dir, tb_log_dir, writer_dict, lmbda)

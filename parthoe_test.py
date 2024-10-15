@@ -22,17 +22,15 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 from tensorboardX import SummaryWriter
 
-import _init_paths
-from config import cfg
-from config import update_config
+from lib.config import cfg
+from lib.config import update_config
 
-from core.loss import JointsMSELoss
+from lib.core.loss import JointsMSELoss
+from lib.dataset import COCO_HOE_Dataset
+from lib.core.function import validate
+from lib.utils.utils import create_logger
 
-from core.function import validate
-
-from utils.utils import create_logger
-
-from models import ViT
+from lib.models import ViT
 
 
 def parse_args():
@@ -102,6 +100,7 @@ def main():
 
     if cfg.TEST.MODEL_FILE:
         logger.info('=> loading model from {}'.format(cfg.TEST.MODEL_FILE))
+        import pdb;pdb.set_trace()
         model.load_state_dict(torch.load(cfg.TEST.MODEL_FILE), strict=False)
     else:
         model_state_file = os.path.join(
@@ -123,7 +122,7 @@ def main():
         mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
     )
 
-    valid_dataset = eval('dataset.' + cfg.DATASET.DATASET)(
+    valid_dataset = COCO_HOE_Dataset(
         cfg, cfg.DATASET.VAL_ROOT, False,
         transforms.Compose([
             transforms.ToTensor(),
@@ -141,7 +140,7 @@ def main():
 
     validate(
         cfg, valid_loader, valid_dataset, model, criterions,
-        final_output_dir, tb_log_dir, save_pickle=True, draw_pic=False
+        final_output_dir, tb_log_dir, save_pickle=False, draw_pic=False
     )
 
 if __name__ == '__main__':
