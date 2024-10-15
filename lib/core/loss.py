@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 from torch.autograd import Function
-from utils.debug import print_variable
 import numpy as np
 
 
