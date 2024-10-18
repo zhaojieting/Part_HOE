@@ -56,7 +56,7 @@ Download the test weight and put it in the checkpoints folder. (will be ready wi
 python parthoe_test.py --cfg config/parthoe.yaml
 ```
 ## Train
-If you want to retrain the model, you must download the pre-trained [VIT-S](https://drive.google.com/file/d/13hrWsB4hsaYJsLjvNl-dwc2ZwuJvVleh/view?usp=drive_link) weight.
+If you want to retrain the model, you must download the pre-trained weight.
 ```
 python parthoe_train.py --cfg config/parthoe.yaml
 ```
