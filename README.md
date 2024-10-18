@@ -51,7 +51,7 @@ Download 4 [annotations](https://drive.google.com/drive/folders/1J3xDMaJMF25nTjO
                 |-- ...
 ```
 ## Test
-Download the test weight [parthoe_s](https://drive.google.com/file/d/1peN8hAJLaPqrJeHufVw9zbmSDXBukVty/view?usp=drive_link) and put it in the checkpoints folder. (will be ready within two days)
+Download the test weight [parthoe_s](https://drive.google.com/file/d/1peN8hAJLaPqrJeHufVw9zbmSDXBukVty/view?usp=drive_link) and put it in the checkpoints folder. (not the best version yet)
 ```
 python parthoe_test.py --cfg config/parthoe.yaml
 ```
