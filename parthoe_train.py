@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # Copyright (c) Microsoft
 # Licensed under the MIT License.
-# Modified by Jieting Zhap (jietingz2000@gmail.com)
+# Modified by Jieting Zhao (jietingz2000@gmail.com)
 # ------------------------------------------------------------------------------
 
 from __future__ import absolute_import
@@ -106,7 +106,7 @@ def main():
         )
     
     # mae pretrain
-    checkpoint = torch.load("/path/to/vit+s-coco", map_location='cpu')
+    checkpoint = torch.load(cfg.MODEL.PRETRAINED, map_location='cpu')
     for name, param in model.named_parameters():
         try:
             if name == 'decoder.conv_for_heatmap1.weight':
@@ -126,10 +126,10 @@ def main():
             # elif name == "decoder.heatmap_final.bias":
             #     param.data = checkpoint['state_dict']['keypoint_head.final_layer.bias']                
             elif name == "pos_embed":
-                param.data = checkpoint['model'][name].data[:,:193,:]
+                param.data = checkpoint['state_dict']['backbone.'+name].data[:,:193,:]
             else:
                 # param.data = checkpoint['state_dict']['backbone.'+name].data
-                param.data = checkpoint['model'][name].data
+                param.data = checkpoint['state_dict']['backbone.'+name].data
 
         except Exception as e:
             print(f'Failed to load parameter{name}: {e}')
@@ -158,7 +158,7 @@ def main():
         mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
     )
 
-    train_dataset = eval('dataset.'+cfg.DATASET.DATASET)(
+    train_dataset = COCO_HOE_Dataset(
         cfg, cfg.DATASET.TRAIN_ROOT, True,
         transforms.Compose([
             transforms.ToTensor(),
