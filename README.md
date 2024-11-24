@@ -2,6 +2,8 @@
 Since I graduated from school in 2024.07, the environment has not remained the original version, and the code might have some bugs ~  
 
 If you need any help, **feel free to ask me through GitHub issues**!
+
+Original Robot-Person-Following video is available [Bilibili](https://www.bilibili.com/video/BV11H4y1p7YL/?spm_id_from=333.999.0.0&vd_source=9343e8dcad06cbe3c3970bfded59c88e)~
 <img src="https://github.com/zhaojieting/Part_HOE/blob/main/docs/IROS2024-Video-2x.gif" width="760" height="480" />
 
 ## News
