@@ -5,7 +5,9 @@ If you need any help, **feel free to ask me through GitHub issues**!
 <img src="https://github.com/zhaojieting/Part_HOE/blob/main/docs/IROS2024-Video-2x.gif" width="760" height="480" />
 
 ## News
-⭐ Paper is release on arxiv [PartHOE](https://arxiv.org/abs/2404.14139).
+🎉 The pre-trained and test checkpoints are all okay now (2024.11.25)~
+
+⭐ Paper is released on Arxiv [PartHOE](https://arxiv.org/abs/2404.14139).
 
 🎉 The paper is accepted by IROS 2024!
 ## Environment Setup
@@ -51,12 +53,12 @@ Download 4 [annotations](https://drive.google.com/drive/folders/1J3xDMaJMF25nTjO
                 |-- ...
 ```
 ## Test
-Download the test weight [parthoe_s](https://drive.google.com/file/d/1peN8hAJLaPqrJeHufVw9zbmSDXBukVty/view?usp=drive_link) and put it in the checkpoints folder. (not the best version yet)
+Download the test weight [parthoe_s](https://drive.google.com/file/d/1_u9kN9C-bBPSYjsMDxpdzc7Q-lfCdR0J/view?usp=drive_link) and put it in the checkpoints folder.
 ```
 python parthoe_test.py --cfg config/parthoe.yaml
 ```
 ## Train
-If you want to retrain the model, you must download the pre-trained weight.
+If you want to retrain the model, you must download the pre-trained weight [vit+s-coco](https://drive.google.com/file/d/1p0BjyD6zzZoGchjPA9n-vocHCFxd7qtI/view?usp=drive_link).
 ```
 python parthoe_train.py --cfg config/parthoe.yaml
 ```
